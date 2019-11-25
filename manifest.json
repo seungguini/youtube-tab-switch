@@ -4,13 +4,13 @@
     "description": "CafeTube provides its users with the ability to adjust YouTube playback with ease, reducing noise to a background tune when the user is watching an instructional video or video calling a friend",
     "version": "1.0",
     "icons": {
-        "128": "icons/icon128.png",
-        "48": "icons/icon48.png",
-        "16": "icons/icon16.png"
+        "128": "icon128.png",
+        "48": "icon48.png",
+        "16": "icon16.png"
     },
     
     "page_action": {
-        "default_icon": "icons/icon16.png",
+        "default_icon": "icon16.png",
         "default_popup": "popup.html",
         "default_title": "CafeTube"
     },

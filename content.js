@@ -1,10 +1,8 @@
 // this code will run each time a Youtube page is open
 
 // send message to eventPage when user watches a YouTube video
-// matching the URL format: "https://youtube.com/watch?v=*"
-chrome.runtime.sendMessage({todo: "showPageAction"});
-chrome.runtime.sendMessage({todo: "logVideoTab"});
-
+// matching the URL format: "https://youtube.com/watch?v=*" - counts youtube.com as well, BUG FIX NEEDEDs
+chrome.runtime.sendMessage({todo: "newVideoTab"});
 //chrome.storage.sync.set({'activeTabIDs': []})
 
 var vid = document.getElementsByClassName("video-stream html5-main-video");
@@ -31,11 +29,9 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResposne){
     if (request.todo == "pauseVideo"){
         vid[0].pause();
     }
-})
-
-$(function(){
-    // if the video is played, send message to pause all other videos
-    if (!video.paused) {
-        chrome
-    }
 });
+
+
+vid[0].onplay = function() {
+    chrome.runtime.sendMessage({todo: 'videoPlaying'});
+}

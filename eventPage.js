@@ -35,7 +35,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
         var tabArray;
         chrome.storage.sync.get('tabArray',function(data) {
             //alert("got tab Array");
-            //alert("tab id is: " + tab.id);
+            //alert("tab id is: " + sender.tab.id);
             
             // if data.tabArray has already been initialized
             if (data.tabArray) {
@@ -45,10 +45,11 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
             }
             else {
                 tabArray = [sender.tab.id];
-                //alert("tab initializing for the first time");
+                //("tab initializing for the first time");
             }
             //alert("finished");
             // set updated tabArray
+            alert("newTab: "+tabArray.join());
             chrome.storage.sync.set({'tabArray': tabArray});
         });
     }
@@ -57,23 +58,27 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
 // when a video has started playing, stop all other videos
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
     if (request.todo == "videoPlaying"){
+        alert("PHASE 1");
         // get all current YouTube tabs
         chrome.storage.sync.get('tabArray', function(data){
+            alert("PHASE 2");
             var tabArray = data.tabArray;
             // pause all other videos
-            chrome.tabs.query({active:true, currentWindow:true}, function(tabs){
-                // loop through all tabs
-                var index;
-                for (index in tabArray){
-                    // exclude the current video
-                    if (tabArray[index] != sender.tab.id) {
-                        chrome.tabs.sendMessage(tabArray[index], {todo: "pauseVideo"});                        
-                    }
+            alert("phase3tabArray is: " + tabArray.join());
+            // loop through all tabs
+            var index;
+            for (index in tabArray){
+                alert("PHASE 4");
+                // exclude the current video
+                if (tabArray[index] != sender.tab.id) {
+                    chrome.tabs.sendMessage(tabArray[index], {todo: "pauseVideo"});
+                    alert("pausing videos");
                 }
-            });
-            
+            }
+        
             // reorder video play priority, so the most recent vid is the last in array
             tabArray = reorderArray(tabArray, sender.tab.id);
+            alert("videoPlaying: "+tabArray.join());
             chrome.storage.sync.set({'tabArray': tabArray});
         });
     }
@@ -89,6 +94,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
             if (length > 1) {
                 // play video with immediate inferior priority
                 // the play video will in turn reorder this as the new priority video
+                alert("filling audio"+tabArray.join());
                 chrome.tabs.sendMessage(tabArray[length-2], {todo: "playVideo"});
             }
           } 
@@ -102,11 +108,10 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
         chrome.storage.sync.get('tabArray',function(data){
             var tabArray = data.tabArray;
             // find the index of the id of the tab to remove in the tabArray
-            alert("before removal: " + tabArray.join());
             // remove the id from tabArray
             spliceArray(tabArray,sender.tab.id);
-            alert("after removal: " + tabArray.join());
             
+            alert("unqueueTab: "+ tabArray.join());
             chrome.storage.sync.set({'tabArray': tabArray});
         });
    } 

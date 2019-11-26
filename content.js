@@ -1,4 +1,4 @@
-// this code will run each time a Youtube page is open
+// this code will run each time a Youtube page is open (?)
 
 // send message to eventPage when user watches a YouTube video
 // matching the URL format: "https://youtube.com/watch?v=*" - counts youtube.com as well, BUG FIX NEEDEDs
@@ -31,7 +31,20 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResposne){
     }
 });
 
-
+// if this video plays, pause all other videos
 vid[0].onplay = function() {
     chrome.runtime.sendMessage({todo: 'videoPlaying'});
-}
+};
+
+// if the main video pauses, play the most recent video to fill audio
+vid[0].onpause = function() {
+    chrome.runtime.sendMessage({todo: 'fillAudio'});  
+};
+
+// sends message to eventPage to unqueue this tab if the user
+// 1. exits the tab
+// 2. enters a new video or page on the same tab
+// 3. reloads the same tab to watch the same video
+window.addEventListener('beforeunload', (event) => {
+    chrome.runtime.sendMessage({todo: 'unqueueTab'});
+});

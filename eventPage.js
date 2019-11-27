@@ -49,7 +49,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
             }
             ////alert("finished");
             // set updated tabArray
-            alert("newTab: "+tabArray.join());
+            //alert("newTab: "+tabArray.join());
             chrome.storage.sync.set({'tabArray': tabArray});
         });
     }
@@ -62,10 +62,10 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
         // get all current YouTube tabs
         chrome.storage.sync.get('tabArray', function(data){
             var tabArray = data.tabArray;
-            alert("reordering tabArray: " + tabArray.join());
+            //alert("reordering tabArray: " + tabArray.join());
             // reorder video play priority, so the this video is the last in array
             tabArray = reorderArray(tabArray, sender.tab.id);
-            alert("reordered tabArray: " + tabArray.join());
+            //alert("reordered tabArray: " + tabArray.join());
             //alert("PHASE 2");
             var tabArray = data.tabArray;
             // pause all other videos
@@ -116,7 +116,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
             // remove the id from tabArray
             spliceArray(tabArray,sender.tab.id);
             
-            alert("unqueueTab: "+ tabArray.join());
+            //alert("unqueueTab: "+ tabArray.join());
             chrome.storage.sync.set({'tabArray': tabArray});
         });
    } 
@@ -126,12 +126,12 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
 // @param tabArray the array to be spliced
 // @param id the id to be spliced
 function spliceArray(tabArray, id) {
-    alert("spliceArray function fired");
+    //alert("spliceArray function fired");
     var index = tabArray.indexOf(id);
     if (index > -1) {
         tabArray.splice(index, 1);
     }
-    alert("spliceArray executed: " + tabArray.join());
+    //alert("spliceArray executed: " + tabArray.join());
     return tabArray;
 }
 
@@ -139,8 +139,9 @@ function spliceArray(tabArray, id) {
 // @param the array to be reorganized
 // @param id the id to be reorganized
 function reorderArray(tabArray, id) {
-    alert("reorder array function fired")
+    //alert("reorder array function fired")
     var splicedArray = spliceArray(tabArray, id);
     splicedArray.push(id);
+    alert("afterreorder: "+splicedArray.join());
     return splicedArray;
 }

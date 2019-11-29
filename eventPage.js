@@ -142,6 +142,6 @@ function reorderArray(tabArray, id) {
     //alert("reorder array function fired")
     var splicedArray = spliceArray(tabArray, id);
     splicedArray.push(id);
-    alert("afterreorder: "+splicedArray.join());
+    //alert("afterreorder: "+splicedArray.join());
     return splicedArray;
 }

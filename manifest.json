@@ -23,7 +23,8 @@
     "content_scripts": [
         {
             "matches": ["https://www.youtube.com/watch?v=*"],
-            "js": ["content.js", "jquery-3.4.1.min.js"]
+            "js": ["content.js", "jquery-3.4.1.min.js"],
+            "run_at": "document_end"
         }
     ],
     

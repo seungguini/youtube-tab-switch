@@ -20,7 +20,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
 
 // show pageAction
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
-    if(request.todo == "newVideoTab"){
+    if(request.todo == "newVideo"){
         chrome.tabs.query({active:true, currentWindow:true}, function(tabs){
             chrome.pageAction.show(tabs[0].id);
         });
@@ -30,26 +30,17 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
 // log the tab id into chrome.storage
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
     // get number of Tabs active from chrome storage
-    if(request.todo == "newVideoTab"){
+    if(request.todo == "newVideo"){
         ////alert("inside newVideoTab listener");
         var tabArray;
         chrome.storage.sync.get('tabArray',function(data) {
             ////alert("got tab Array");
             ////alert("tab id is: " + sender.tab.id);
-            var tabArray;
-            // if data.tabArray has already been initialized
-            if (data.tabArray) {
-                tabArray = data.tabArray;
-                tabArray.push(sender.tab.id);
-                ////alert("tab already initialized");
-            }
-            else {
-                tabArray = [sender.tab.id];
-                //("tab initializing for the first time");
-            }
+            var tabArray = data.tabArray;
+            tabArray = initializeArray(tabArray, sender.tab.id);
             ////alert("finished");
             // set updated tabArray
-            //alert("newTab: "+tabArray.join());
+            alert("newTab: "+tabArray.join());
             chrome.storage.sync.set({'tabArray': tabArray});
         });
     }
@@ -58,7 +49,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
 // when a video has started playing, stop all other videos
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
     if (request.todo == "videoPlaying"){
-        //alert("PHASE 1");
+        alert("videoPlaying executed");
         // get all current YouTube tabs
         chrome.storage.sync.get('tabArray', function(data){
             var tabArray = data.tabArray;
@@ -80,7 +71,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
                     //alert("pausing videos");
                 }
             }
-            //alert("videoPlaying: "+tabArray.join());
+            alert("videoPlaying: "+tabArray.join());
             chrome.storage.sync.set({'tabArray': tabArray});
         });
     }
@@ -116,7 +107,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
             // remove the id from tabArray
             spliceArray(tabArray,sender.tab.id);
             
-            //alert("unqueueTab: "+ tabArray.join());
+            alert("unqueueTab: "+ tabArray.join());
             chrome.storage.sync.set({'tabArray': tabArray});
         });
    } 
@@ -144,4 +135,21 @@ function reorderArray(tabArray, id) {
     splicedArray.push(id);
     //alert("afterreorder: "+splicedArray.join());
     return splicedArray;
+}
+
+
+
+// initialize tabArray if empty, or push tab id to the list
+// @param tabArray the array that holds all video tab ids
+// @param id the tab to add to tabArray
+function initializeArray(tabArray, id) {
+    if (tabArray) {
+        tabArray.push(id);
+        ////alert("tab already initialized");
+    }
+    else {
+        tabArray = [id];
+        //("tab initializing for the first time");
+    }
+    return tabArray;
 }

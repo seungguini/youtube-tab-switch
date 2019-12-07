@@ -68,12 +68,10 @@ window.addEventListener("yt-page-data-updated", function() {
                 vid[0].play();
             }
         });
-
-        } else if (!url[3]){ // if it's empty, homepage
-            console.log("url[3]: " + url[3] + "homepage!");
-            vid = null;
+        // if we go to a non-video YouTube page (i.e. homepage or searchpage),
+        // unqueue tab and fill audio
         } else {
-            console.log("somethign wrong... url[3]: " + url[3]);
-            vid = null;
+            chrome.runtime.sendMessage({todo: 'unqueueTab'});
+            chrome.runtime.sendMessage({todo: 'fillAudio'});
         }
 });

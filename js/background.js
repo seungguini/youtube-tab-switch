@@ -38,7 +38,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
             ////alert("got tab Array");
             ////alert("tab id is: " + sender.tab.id);
             var tabArray = data.tabArray;
-            tabArray = initializeArray(tabArray, sender.tab.id);
+            tabArray = queueVideo(tabArray, sender.tab.id);
             ////alert("finished");
             // set updated tabArray
             alert("newTab: "+tabArray.join());
@@ -143,10 +143,14 @@ function reorderArray(tabArray, id) {
 // initialize tabArray if empty, or push tab id to the list
 // @param tabArray the array that holds all video tab ids
 // @param id the tab to add to tabArray
-function initializeArray(tabArray, id) {
+function queueVideo(tabArray, id) {
     if (tabArray) {
-        tabArray.push(id);
-        ////alert("tab already initialized");
+        // make sure tab is not duplicated
+        if (!tabArray.includes(id)) {
+            tabArray.push(id);
+        } else { // if for some reason tab id already exists, bring it to the front
+            reorderArray(tabArray,id);
+        }
     }
     else {
         tabArray = [id];

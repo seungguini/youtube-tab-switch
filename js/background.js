@@ -41,7 +41,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
             tabArray = queueVideo(tabArray, sender.tab.id);
             ////alert("finished");
             // set updated tabArray
-            alert("newTab: "+tabArray.join());
+            //alert("newTab: "+tabArray.join());
             chrome.storage.sync.set({'tabArray': tabArray});
         });
     }
@@ -50,7 +50,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
 // when a video has started playing, stop all other videos
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
     if (request.todo == "videoPlaying"){
-        alert("videoPlaying executed");
+        //alert("videoPlaying executed");
         // get all current YouTube tabs
         chrome.storage.sync.get('tabArray', function(data){
             var tabArray = data.tabArray;
@@ -72,7 +72,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
                     //alert("pausing videos");
                 }
             }
-            alert("videoPlaying: "+tabArray.join());
+            //alert("videoPlaying: "+tabArray.join());
             chrome.storage.sync.set({'tabArray': tabArray});
         });
     }
@@ -107,8 +107,8 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
             // find the index of the id of the tab to remove in the tabArray
             // remove the id from tabArray
             spliceArray(tabArray,sender.tab.id);
-            
-            alert("unqueueTab: "+ tabArray.join());
+
+            //alert("unqueueTab: "+ tabArray.join());
             chrome.storage.sync.set({'tabArray': tabArray});
         });
    } 

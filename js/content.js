@@ -26,6 +26,7 @@ chrome.webNavigation.onHistoryStateUpdated.addListener(function(details) {
 // 3. reloads the same tab to watch the same video
 window.addEventListener('beforeunload', (event) => {
     chrome.runtime.sendMessage({todo: 'unqueueTab'});
+    chrome.runtime.sendMessage({todo: 'fillAudio'});
 });
 
 // listen for AJAX youtube content change
@@ -40,6 +41,34 @@ window.addEventListener("yt-page-data-updated", function() {
         if (url[3].startsWith("watch?v=")) {
             chrome.runtime.sendMessage({todo: "newVideo"});
             chrome.runtime.sendMessage({todo: "videoPlaying"});
+
+        var vid = document.getElementsByClassName("video-stream html5-main-video");
+
+        vid[0].addEventListener("play", function(){
+            chrome.runtime.sendMessage({todo: 'videoPlaying'});
+        });
+
+        // if the main video pauses, play the most recent video to fill audio
+        vid[0].addEventListener("pause", function(){
+        chrome.runtime.sendMessage({todo: 'fillAudio'}); 
+        });
+
+        // listener for pausing video
+        chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
+            if(request.todo == "pauseVideo"){
+                // get(0) gets the native DOM element, which actually has the play() function
+                vid[0].pause();
+            }
+        });
+
+        // listener for playing video
+        chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
+            if(request.todo == "playVideo"){
+                // get(0) gets the native DOM element, which actually has the play() function
+                vid[0].play();
+            }
+        });
+
         } else if (!url[3]){ // if it's empty, homepage
             console.log("url[3]: " + url[3] + "homepage!");
             vid = null;
@@ -47,31 +76,4 @@ window.addEventListener("yt-page-data-updated", function() {
             console.log("somethign wrong... url[3]: " + url[3]);
             vid = null;
         }
-});
-
-var vid = document.getElementsByClassName("video-stream html5-main-video");
-
-vid[0].addEventListener("play", function(){
-    chrome.runtime.sendMessage({todo: 'videoPlaying'});
-});
-
-// if the main video pauses, play the most recent video to fill audio
-vid[0].addEventListener("pause", function(){
-   chrome.runtime.sendMessage({todo: 'fillAudio'}); 
-});
-
-// listener for pausing video
-chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
-    if(request.todo == "pauseVideo"){
-        // get(0) gets the native DOM element, which actually has the play() function
-        vid[0].pause();
-    }
-});
-
-// listener for playing video
-chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
-    if(request.todo == "playVideo"){
-        // get(0) gets the native DOM element, which actually has the play() function
-        vid[0].play();
-    }
 });

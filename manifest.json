@@ -4,27 +4,28 @@
     "description": "CafeTube provides its users with the ability to adjust YouTube playback with ease, reducing noise to a background tune when the user is watching an instructional video or video calling a friend",
     "version": "1.0",
     "icons": {
-        "128": "icon128.png",
-        "48": "icon48.png",
-        "16": "icon16.png"
+        "128": "img/icon128.png",
+        "48": "img/icon48.png",
+        "16": "img/icon16.png"
     },
     
     "page_action": {
-        "default_icon": "icon16.png",
+        "default_icon": "img/icon16.png",
         "default_popup": "popup.html",
         "default_title": "CafeTube"
     },
     
     "background": {
-        "scripts": ["eventPage.js"],
+        "scripts": ["js/eventPage.js"],
         "persistent": false
     },
     
     "content_scripts": [
         {
-            "matches": ["https://www.youtube.com/watch?v=*"],
-            "js": ["content.js", "jquery-3.4.1.min.js"],
-            "run_at": "document_end"
+            "matches": ["*://*.youtube.com/watch?v=*"],
+            "js": ["js/content.js", "lib/jquery-3.4.1.min.js"],
+            // run at start to allow our code to set up before youtube scripts execute
+            "run_at": "document_start"
         }
     ],
     

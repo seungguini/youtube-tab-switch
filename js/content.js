@@ -18,8 +18,7 @@ chrome.webNavigation.onHistoryStateUpdated.addListener(function(details) {
 
 */
 
-// listen for AJAX youtube content change
- // yt-navigate-start won't catch initial entry into YouTube page
+
 
 // sends message to eventPage to unqueue this tab if the user
 // 1. exits the tab
@@ -29,7 +28,8 @@ window.addEventListener('beforeunload', (event) => {
     chrome.runtime.sendMessage({todo: 'unqueueTab'});
 });
 
-
+// listen for AJAX youtube content change
+// yt-navigate-start won't catch initial entry into YouTube page
 window.addEventListener("yt-page-data-updated", function() {
     // check if a video is playing
     // if this doesn't work we could use window.location.href
@@ -42,14 +42,23 @@ window.addEventListener("yt-page-data-updated", function() {
             chrome.runtime.sendMessage({todo: "videoPlaying"});
         } else if (!url[3]){ // if it's empty, homepage
             console.log("url[3]: " + url[3] + "homepage!");
+            vid = null;
         } else {
             console.log("somethign wrong... url[3]: " + url[3]);
+            vid = null;
         }
 });
 
 var vid = document.getElementsByClassName("video-stream html5-main-video");
 
+vid[0].addEventListener("play", function(){
+    chrome.runtime.sendMessage({todo: 'videoPlaying'});
+});
 
+// if the main video pauses, play the most recent video to fill audio
+vid[0].addEventListener("pause", function(){
+   chrome.runtime.sendMessage({todo: 'fillAudio'}); 
+});
 
 // listener for pausing video
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
@@ -65,14 +74,4 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
         // get(0) gets the native DOM element, which actually has the play() function
         vid[0].play();
     }
-});
-
-// if this video plays, pause all other videos
-vid[0].addEventListener("play", function(){
-    chrome.runtime.sendMessage({todo: 'videoPlaying'});
-});
-
-// if the main video pauses, play the most recent video to fill audio
-vid[0].addEventListener("pause", function(){
-   chrome.runtime.sendMessage({todo: 'fillAudio'}); 
 });

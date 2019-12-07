@@ -19,6 +19,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
 */
 
 // show pageAction
+/*
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
     if(request.todo == "newVideo"){
         chrome.tabs.query({active:true, currentWindow:true}, function(tabs){
@@ -26,7 +27,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
         });
     }
 });
-
+*/
 // log the tab id into chrome.storage
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
     // get number of Tabs active from chrome storage

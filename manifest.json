@@ -9,20 +9,20 @@
         "16": "img/icon16.png"
     },
     
-    "page_action": {
+    "browser_action": {
         "default_icon": "img/icon16.png",
         "default_popup": "popup.html",
         "default_title": "CafeTube"
     },
     
     "background": {
-        "scripts": ["js/eventPage.js"],
+        "scripts": ["js/background.js"],
         "persistent": false
     },
     
     "content_scripts": [
         {
-            "matches": ["*://*.youtube.com/watch?v=*"],
+            "matches": ["*://*.youtube.com/*"],
             "js": ["js/content.js", "lib/jquery-3.4.1.min.js"],
             // run at start to allow our code to set up before youtube scripts execute
             "run_at": "document_start"
@@ -31,7 +31,7 @@
     
     "permissions": [
         "tabs",
-        "https://www.youtube.com/watch?v=*",
+        "*://*.youtube.com/*",
         "storage"
     ]
 }

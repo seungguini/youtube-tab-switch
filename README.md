@@ -8,7 +8,7 @@ For me, worked best when I had a video tutorial on one tab, a music video on ano
 
 ## Installation
 1. Download the `.zip` file and unpackage it
-2. On your Chrome Browser, go to [chrome://extension]
+2. On your Chrome Browser, go to [chrome://extension](chrome://extension)
 3. Turn on **Developer Mode** on the top right corner
 4. Select **Load Unpacked**
 5. Select the _unzipped_ **CafeTube** folder

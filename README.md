@@ -12,10 +12,12 @@ For me, works best when I have a video tutorial on one tab, a music video on ano
 
 ## Installation
 1. Download the `.zip` file and unpackage it
-2. On your Chrome Browser, go to <chrome://extension>
-3. Turn on **Developer Mode** on the top right corner
-4. Select **Load Unpacked**
-5. Select the _unzipped_ **YouTube Tab Switch** folder
+2. Make sure all YouTube tabs are closed first!
+3. On your Chrome Browser, go to <chrome://extension>
+4. Turn on **Developer Mode** on the top right corner
+5. Select **Load Unpacked**
+6. Select the _unzipped_ **YouTube Tab Switch** folder
+
 
 Enjoy!
 

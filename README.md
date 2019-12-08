@@ -1,8 +1,10 @@
-# CafeTube
+# YouTube Tab Switch
 ## Description
-CafeTube is the chrome extension that will give you an endless flow of audio from the YouTube videos handpicked by yourself!
+YouTube Tab Switch is the chrome extension that will give you an endless flow of audio from the YouTube videos handpicked by yourself!
 
-Ever open multiple YouTube video tabs at once, only to have five different videos playing at the same time, causing a cacaphony of untracked sound? Yeah, I hate that too. CafeTube fixes that problem by pausing all other video tabs when a YouTube video is played form a tab. When you pause the playing video, the most recently played video resumes, giving a constant flow of sound!
+Ever open multiple YouTube video tabs at once, only to have five different videos playing at the same time, causing a cacaphony of untracked sound? Yeah I hate that too. YouTube Tab Switch fixes that problem by pausing all other video tabs when a YouTube video is played form a tab. When you pause the playing video, the most recently played video resumes, giving a constant flow of sound!
+
+Even workds _across_ windows!
 
 For me, worked best when I had a video tutorial on one tab, a music video on another: when you need to pause the video tutorial to take notes / code, music seamlessly plays from the other tab!
 
@@ -11,7 +13,7 @@ For me, worked best when I had a video tutorial on one tab, a music video on ano
 2. On your Chrome Browser, go to <chrome://extension>
 3. Turn on **Developer Mode** on the top right corner
 4. Select **Load Unpacked**
-5. Select the _unzipped_ **CafeTube** folder
+5. Select the _unzipped_ **YouTube Tab Switch** folder
 
 Enjoy!
 

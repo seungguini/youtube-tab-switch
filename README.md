@@ -1,12 +1,14 @@
 # YouTube Tab Switch
 ## Description
-YouTube Tab Switch is the chrome extension that will give you an endless flow of audio from the YouTube videos handpicked by yourself!
+YouTube Tab Switch is _the_ chrome extension that will give you elevated control of YouTube video playback across multiple tabs and windows!
 
-Ever open multiple YouTube video tabs at once, only to have five different videos playing at the same time, causing a cacaphony of untracked sound? Yeah I hate that too. YouTube Tab Switch fixes that problem by pausing all other video tabs when a YouTube video is played form a tab. When you pause the playing video, the most recently played video resumes, giving a constant flow of sound!
+Ever open several YouTube video tabs at once, only to have five different videos playing at the same time, causing a cacaphony of untracked sound? Ever wish your music video automatically played in the background when you pause your tutorial to take notes? YouTube Tab Switch achieves this problem simply and efficiently:
+
+When a user plays a video, videos on all other tabs and windows pause, giving you instant focus. When you pause the video you are watching, the preceding most-recent video plays, giving you a seamless flow of video (or audio)!
 
 Even workds _across_ windows!
 
-For me, worked best when I had a video tutorial on one tab, a music video on another: when you need to pause the video tutorial to take notes / code, music seamlessly plays from the other tab!
+For me, works best when I have a video tutorial on one tab, a music video on another: when you need to pause the video tutorial to take notes / code, music seamlessly plays from the other tab!
 
 ## Installation
 1. Download the `.zip` file and unpackage it

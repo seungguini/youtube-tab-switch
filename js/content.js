@@ -1,29 +1,18 @@
-//alert("match!");
-/*
-this code will run each time a *://*.youtube.com/* is opened. We must catch two major cases:
-  1. The YouTube homepage at *://*.youtube.com/. No video is playing. Listen to event
-      'yt-page-data-update' to catch a new video playing.
-  2. An actual YouTube video with the format of *://*.youtube.com/watch?v=* . Queue this tab.
+/**
+ * The content script. The content script runs each time the url of the format *://*.youtube.com/* is matched.
+ * There are three major cases where this can happen:
+ * 1. The YouTube homepage at *://*.youtube.com/
+ * 2. A YouTube video page at *://*.youtube.com/watch?v=*
+ * 3. A YouTube search page at *://*.youtube.com/results?search_query=*
+ * Each tab that matches the url above gets its own content page.
+ * For more on content scripts, visit: {@link https://developer.chrome.com/extensions/content_scripts}.
+ * @author Seunggun Lee
+ * 
+ */
 
-  When a new video is played, it should be queued. When a video exits (close tab, pressing the
-    back button on the browser, clicking on a new video within the same tab, going back to the 
-    YouTube home page, or any other non-video YouTube page)
-*/
-
-/*
-DETECTING CHANGE IN HISTORY STATE THROUGH THE BACKGROUND PAGE
-chrome.webNavigation.onHistoryStateUpdated.addListener(function(details) {
-    chrome.tabs.executeScript(null,{file:"contentscript.js"});
-});
-
-*/
-
-
-
-// sends message to eventPage to unqueue this tab if the user
-// 1. exits the tab
-// 2. enters a new video or page on the same tab
-// 3. reloads the same tab to watch the same video
+/**
+ * Handles the user leaving the current video, whether by choosing a new video, closing the tab, or going to a new website.
+ */
 window.addEventListener('beforeunload', (event) => {
     chrome.runtime.sendMessage({todo: 'unqueueTab'});
     chrome.runtime.sendMessage({todo: 'fillAudio'});
@@ -31,16 +20,21 @@ window.addEventListener('beforeunload', (event) => {
 
 // listen for AJAX youtube content change
 // yt-navigate-start won't catch initial entry into YouTube page
+/**
+ * Listens for YouTube's AJAX page load when a new video is played within the same tab. YouTube uses dynamic
+ * loading to avoid having to reload the whole page when a user plays a new video. We catch this load with
+ * YouTube's event "yt-page-data-updated".
+ */
 window.addEventListener("yt-page-data-updated", function() {
     // check if a video is playing
     // if this doesn't work we could use window.location.href
     // split that url by ("/")
     // and then check if the tail contains "watch?v="
 
-        var url = window.location.href.split("/"); // expected url format: *://*.youtube.com/*
-        if (url[3].startsWith("watch?v=")) {
-            chrome.runtime.sendMessage({todo: "newVideo"});
-            chrome.runtime.sendMessage({todo: "videoPlaying"});
+    var url = window.location.href.split("/"); // expected url format: *://*.youtube.com/*
+    if (url[3].startsWith("watch?v=")) {
+        chrome.runtime.sendMessage({todo: "newVideo"});
+        chrome.runtime.sendMessage({todo: "videoPlaying"});
 
         var vid = document.getElementsByClassName("video-stream html5-main-video");
 
@@ -68,10 +62,11 @@ window.addEventListener("yt-page-data-updated", function() {
                 vid[0].play();
             }
         });
-        // if we go to a non-video YouTube page (i.e. homepage or searchpage),
-        // unqueue tab and fill audio
-        } else {
-            chrome.runtime.sendMessage({todo: 'unqueueTab'});
-            chrome.runtime.sendMessage({todo: 'fillAudio'});
-        }
+    // if we go to a non-video YouTube page (i.e. homepage or searchpage),
+    // unqueue tab and fill audio
+    }
+    else {
+        chrome.runtime.sendMessage({todo: 'unqueueTab'});
+        chrome.runtime.sendMessage({todo: 'fillAudio'});
+    }
 });

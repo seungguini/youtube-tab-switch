@@ -5,7 +5,7 @@
     "version": "1.0",
     "icons": {
         "128": "img/icon128.png",
-        "48": "img/icon48.png",
+        "32": "img/icon32.png",
         "16": "img/icon16.png"
     },
     

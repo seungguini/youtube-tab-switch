@@ -33,3 +33,6 @@ Enjoy!
   - categorize Youtube videos to audio fill between user-designated genres
   - controlling video playback in another window through the extension (key-board shortcuts)
     - for quick and convenient playback control (esp. while coding alongside, etc)
+  - **Toggle Options!**
+    - to turn on/off the extension entirely
+    - an option to immediately show the tab of the video that is played when auto-switched

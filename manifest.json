@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "YouTube Tab Switch",
-    "description": "YouTube Tab Switch provides its users with the ability to adjust YouTube playback with ease, reducing noise to a background tune when the user is watching an instructional video or video calling a friend",
+    "description": "No matter how many YouTube video tabs are open, YouTube Tab Switch ensures that only one video is always playing",
     "version": "1.0",
     "icons": {
         "128": "img/icon128.png",

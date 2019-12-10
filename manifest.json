@@ -24,7 +24,6 @@
         {
             "matches": ["*://*.youtube.com/*"],
             "js": ["js/content.js", "lib/jquery-3.4.1.min.js"],
-            // run at start to allow our code to set up before youtube scripts execute
             "run_at": "document_end"
         }
     ],

@@ -7,9 +7,11 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
     // get number of Tabs active from chrome storage
     if(request.todo == "newVideo"){
         var tabArray;
-        chrome.storage.sync.get('tabArray',function(data) {
+        chrome.storage.sync.get({'tabArray':[]},function(data) {
             var tabArray = data.tabArray;
             tabArray = queueVideo(tabArray, sender.tab.id);
+
+            console.log(tabArray.toString())
             // set updated tabArray
             chrome.storage.sync.set({'tabArray': tabArray});
         });
@@ -20,30 +22,35 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
     if (request.todo == "videoPlaying"){
         // get all current YouTube tabs
-        chrome.storage.sync.get('tabArray', function(data){
+        chrome.storage.sync.get({'tabArray':[], 'enabled': true}, function(data){
             var tabArray = data.tabArray;
             // reorder video play priority, so the this video is the last in array
             tabArray = reorderArray(tabArray, sender.tab.id);
             var tabArray = data.tabArray;
-            // pause all other videos
-            // loop through all tabs
-            var index;
-            for (index in tabArray){
-                // exclude the current video
-                if (tabArray[index] != sender.tab.id) {
-                    chrome.tabs.sendMessage(tabArray[index], {todo: "pauseVideo"});
+
+            // pause all other videos ONLY if app is enabled
+            if (data.enabled) {
+                // loop through all tabs
+                var index;
+                for (index in tabArray){
+                    // exclude the current video
+                    if (tabArray[index] != sender.tab.id) {
+                        chrome.tabs.sendMessage(tabArray[index], {todo: "pauseVideo"});
+                    }
                 }
+                console.log(tabArray.toString())
+                chrome.storage.sync.set({'tabArray': tabArray});
             }
-            chrome.storage.sync.set({'tabArray': tabArray});
         });
     }
 });
 
+// fillAudio ONLY if app is toggled
 // if the main video pauses, fill audio by playing the most recent tab
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
    if (request.todo == "fillAudio"){
-       chrome.storage.sync.get('tabArray', function(data){
-          if(data.tabArray){
+       chrome.storage.sync.get({'tabArray':[], 'enabled':true}, function(data){
+          if(data.tabArray && data.enabled){
             var tabArray = data.tabArray;
             var length = tabArray.length;
             // if the video paused is the main video
@@ -68,6 +75,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
             // remove the id from tabArray
             spliceArray(tabArray,sender.tab.id);
 
+            console.log(tabArray.toString())
             chrome.storage.sync.set({'tabArray': tabArray});
         });
    } 

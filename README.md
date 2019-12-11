@@ -10,6 +10,8 @@ Even works _across_ windows!
 
 For me, works best when I have a video tutorial on one tab, a music video on another: when you need to pause the video tutorial to take notes / code, music seamlessly plays from the other tab!
 
+If you ever miss the old playback properties, simple disable the app with the popup button!
+
 ## Installation
 1. Download the `.zip` file and unpackage it
 2. Make sure all YouTube tabs are closed first!
@@ -34,8 +36,8 @@ Enjoy!
   - controlling video playback in another window through the extension (key-board shortcuts)
     - for quick and convenient playback control (esp. while coding alongside, etc)
   - **Toggle Options!**
-    - to turn on/off the extension entirely
     - an option to immediately show the tab of the video that is played when auto-switched
+    - to pause all other videos except the most recent one when the app is enabled in the middle
 
 ### Credits!
 

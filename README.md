@@ -42,3 +42,5 @@ Enjoy!
 ### Credits!
 
 Icons made by [Smashicons](https://www.flaticon.com/authors/smashicons) from [www.flaticon.com](https://www.flaticon.com/)
+
+Toggle buttons designed by [Aanjulena Sweet](https://codepen.io/aanjulena) on [CodePen](https://codepen.io/aanjulena/pen/ZLZjzV)

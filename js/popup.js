@@ -14,7 +14,14 @@ $(function(){
     $('#toggle-app').change(function() {
         if ($('#toggle-app').prop('checked')) {
             chrome.storage.sync.set({'enabled': true});
-        } else {
+            chrome.storage.sync.get({"tabArray": []}, function(data){
+                if (data.tabArray.length > 0) {
+                    // when changed to enabled, play only the most recent vdieo
+                    chrome.tabs.sendMessage(data.tabArray[data.tabArray.length-1], {todo: "playVideo"});
+                }
+            });
+        }
+        else {
             chrome.storage.sync.set({'enabled': false});
         }
     });

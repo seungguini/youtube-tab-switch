@@ -26,7 +26,6 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
             var tabArray = data.tabArray;
             // reorder video play priority, so the this video is the last in array
             tabArray = reorderArray(tabArray, sender.tab.id);
-            var tabArray = data.tabArray;
 
             // pause all other videos ONLY if app is enabled
             if (data.enabled) {
@@ -39,8 +38,9 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
                     }
                 }
                 console.log(tabArray.toString())
-                chrome.storage.sync.set({'tabArray': tabArray});
             }
+            
+            chrome.storage.sync.set({'tabArray': tabArray});
         });
     }
 });

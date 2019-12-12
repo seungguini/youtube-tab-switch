@@ -38,15 +38,6 @@ window.addEventListener("yt-page-data-updated", function() {
 
         var vid = document.getElementsByClassName("video-stream html5-main-video");
 
-        vid[0].addEventListener("play", function(){
-            chrome.runtime.sendMessage({todo: 'videoPlaying'});
-        });
-
-        // if the main video pauses, play the most recent video to fill audio
-        vid[0].addEventListener("pause", function(){
-        chrome.runtime.sendMessage({todo: 'fillAudio'}); 
-        });
-
         // listener for pausing video
         chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
             if(request.todo == "pauseVideo"){
@@ -60,7 +51,17 @@ window.addEventListener("yt-page-data-updated", function() {
             if(request.todo == "playVideo"){
                 // get(0) gets the native DOM element, which actually has the play() function
                 vid[0].play();
+                chrome.runtime.sendMessage({todo: 'videoPlaying'});
             }
+        });
+
+        vid[0].addEventListener("play", function(){
+            chrome.runtime.sendMessage({todo: 'videoPlaying'});
+        });
+
+        // if the main video pauses, play the most recent video to fill audio
+        vid[0].addEventListener("pause", function(){
+        chrome.runtime.sendMessage({todo: 'fillAudio'}); 
         });
     // if we go to a non-video YouTube page (i.e. homepage or searchpage),
     // unqueue tab and fill audio

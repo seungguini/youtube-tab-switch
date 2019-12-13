@@ -1,5 +1,27 @@
-// set toggle value
 
+/* SCRIPT FOR DISPLAYING TAB LIST */
+/*
+chrome.storage.sync.get({'tabArray': []}, function(data){
+    var tablist = $('#tab-list');
+    for (tb in data.tabArray) {
+        var tabContent = `
+        <div class="tab" id=${tab.id}>
+
+         Should make an object... 
+            containing info about the video
+            for display...
+        
+        
+        `
+
+        tablist.append($(tabContent));
+    }   
+}
+*/
+
+/* SCRIPT FOR ENABLING/DISABLING APP*/
+
+// set toggle value
 chrome.storage.sync.get({'enabled':true}, function(data){
     if (data.enabled) {
         $('#toggle-app').prop('checked', true);

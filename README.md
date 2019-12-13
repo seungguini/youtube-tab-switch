@@ -38,7 +38,8 @@ Enjoy!
   - **Toggle Options!**
     - an option to immediately show the tab of the video that is played when auto-switched
     - to pause all other videos except the most recent one when the app is enabled in the middle
-
+- Popup
+  - Bootstrap Lists, progress, spinners
 ### Credits!
 
 Icons made by [Smashicons](https://www.flaticon.com/authors/smashicons) from [www.flaticon.com](https://www.flaticon.com/)

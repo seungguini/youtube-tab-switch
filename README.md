@@ -1,3 +1,5 @@
+branch to develop the popup functionality
+
 # YouTube Tab Switch
 ## Description
 YouTube Tab Switch is _the_ chrome extension that will give you elevated control of YouTube video playback across multiple tabs and windows!

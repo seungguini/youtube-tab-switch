@@ -5,24 +5,31 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>YouTube Tab Switch</title>
-        <link rel="stylesheet" href="lib/bootstrap-toggle.min.css">
-        <link rel="stylesheet" href="lib/bootstrap.min.css">
+        <link rel="stylesheet" href="popup.css">
+        <link rel="stylesheet" href="lib/materialize.min.css">
         <script src="lib/jquery-3.4.1.min.js"></script>
-        <script src="lib/bootstrap.min.js"></script>
-        <script src="lib/bootstrap-toggle.min.js"></script>
+        <script src="lib/materialize.min.js"></script>
         <script src="js/popup.js"></script>
     </head>
     <body>
         <div class="container">
             <div class="row">
-                <div id="tab-list">
-                    <!--- All YouTube tabs render here --->
+                <div class="col">
+                    <div id="tab-list">
+                        <!--- All YouTube tabs render here --->
+                    </div>
                 </div>
             </div>
             <div class="row">
-                <input type="checkbox" checked data-toggle="toggle" id="toggle-app" data-on="App Enabled" data-off="App Disabled">  
+                <div class="switch">
+                    <label>
+                        Off
+                        <input type="checkbox" id="toggle-app" checked>
+                        <span class="lever"></span>
+                        On
+                    </label>
+                </div>
             </div>
-
         </div>
     </body>
 </html>

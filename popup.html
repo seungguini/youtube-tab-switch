@@ -1,33 +1,36 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en-US" style="height: 325px; width: 275px;">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>YouTube Tab Switch</title>
-        <link rel="stylesheet" href="popup.css">
+        
         <link rel="stylesheet" href="lib/materialize.min.css">
+        <link type='text/css' rel="stylesheet" href="fonts.css">
+        
         <script src="lib/jquery-3.4.1.min.js"></script>
         <script src="lib/materialize.min.js"></script>
-        <script src="js/popup.js"></script>
+        <script src="js/popup.js" defer></script>
     </head>
-    <body>
+    <body style="font-family: 'OpenSans-Regular;'">
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <div id="tab-list">
-                        <!--- All YouTube tabs render here --->
-                    </div>
+                    <h4 class="center-align">YouTube Tab Switch</h4>
                 </div>
             </div>
             <div class="row">
-                <div class="switch">
-                    <label>
-                        Off
-                        <input type="checkbox" id="toggle-app" checked>
-                        <span class="lever"></span>
-                        On
-                    </label>
+                <div class="col s3 push-s9">
+                    <div class="switch">
+                        <label>
+                            <input type="checkbox" id="toggle-app" checked>
+                            <span class="lever"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col s9 pull-s3">
+                    Enable App
                 </div>
             </div>
         </div>

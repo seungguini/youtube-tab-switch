@@ -31,12 +31,12 @@ window.addEventListener("yt-page-data-updated", function() {
     // split that url by ("/")
     // and then check if the tail contains "watch?v="
 
-    var url = window.location.href.split("/"); // expected url format: *://*.youtube.com/*
+    let url = window.location.href.split("/"); // expected url format: *://*.youtube.com/*
     if (url[3].startsWith("watch?v=")) {
         chrome.runtime.sendMessage({todo: "newVideo"});
         chrome.runtime.sendMessage({todo: "videoPlaying"});
 
-        var vid = document.getElementsByClassName("video-stream html5-main-video");
+        let vid = document.getElementsByClassName("video-stream html5-main-video");
 
         // listener for pausing video
         chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){

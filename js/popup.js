@@ -2,9 +2,9 @@
 /* SCRIPT FOR DISPLAYING TAB LIST */
 /*
 chrome.storage.sync.get({'tabArray': []}, function(data){
-    var tablist = $('#tab-list');
+    let tablist = $('#tab-list');
     for (tb in data.tabArray) {
-        var tabContent = `
+        let tabContent = `
         <div class="tab" id=${tab.id}>
 
          Should make an object... 

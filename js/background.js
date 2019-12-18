@@ -10,26 +10,19 @@ When chrome installs and runs the extension for the first time, read and insert 
 from left to right, with the right-most tab having most priority
 */
 chrome.runtime.onInstalled.addListener(function () {
-    chrome.storage.sync.get({'tabArray':[]}, function(data){
-        chrome.tabs.query({'url': "*://*.youtube.com/watch?v=*"}, function (tabs) {
-            var tabArray = data.tabArray;
-            for (i in tabs) {
-                chrome.tabs.reload(tabs[i].id);
-                /*
-                tabArray = queueVideo(tabArray, tabs[i].id);
-
-                // inject script into each YouTube tab
-                chrome.tabs.executeScript(tabs[i].id, {file: "js/content.js"});
-                */
-            }
-
+    chrome.tabs.query({'url': "*://*.youtube.com/watch?v=*"}, function (tabs) {
+        
+        // reload all tabs to queue them
+        for (i in tabs) {
+            chrome.tabs.reload(tabs[i].id);
+        }
+        
+        chrome.storage.sync.get({'tabArray':[]}, function(data){
             // play the right-most video
             if (data.tabArray.length > 0) {
                 // when changed to enabled, play only the most recent vdieo
-                chrome.tabs.sendMessage(tabArray[tabArray.length-1], {todo: "playVideo"});
+                chrome.tabs.sendMessage(data.tabArray[data.tabArray.length-1], {todo: "playVideo"});
             }
-
-            chrome.storage.sync.set({'tabArray': tabArray});
         });
     });
 });

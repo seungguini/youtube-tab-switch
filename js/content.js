@@ -13,10 +13,16 @@
 /**
  * Handles the user leaving the current video, whether by choosing a new video, closing the tab, or going to a new website.
  */
-window.addEventListener('beforeunload', (event) => {
-    chrome.runtime.sendMessage({todo: 'unqueueTab'});
-    chrome.runtime.sendMessage({todo: 'fillAudio'});
-});
+try {
+    window.addEventListener('beforeunload', (event) => {
+        chrome.runtime.sendMessage({todo: 'unqueueTab'});
+        chrome.runtime.sendMessage({todo: 'fillAudio'});
+    });
+}
+catch (e) {
+    console.e(e);
+}
+
 
 // listen for AJAX youtube content change
 // yt-navigate-start won't catch initial entry into YouTube page

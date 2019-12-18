@@ -49,6 +49,10 @@ Icons made by [Smashicons](https://www.flaticon.com/authors/smashicons) from [ww
 
 # Potential CSS:
 
+### Tabs
+
+https://codepen.io/inupurnomo/pen/MWWRmQr
+
 ### Buttons
 
 https://freefrontend.com/jquery-buttons/

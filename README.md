@@ -46,6 +46,9 @@ Enjoy!
 
 Icons made by [Smashicons](https://www.flaticon.com/authors/smashicons) from [www.flaticon.com](https://www.flaticon.com/)
 
+Tab designed by [Ilham Ibnu Purnomo](https://codepen.io/inupurnomo) on [CodePen](https://codepen.io/inupurnomo/pen/MWWRmQr?editors=0100#0)
+
+Switch designed by [Marcus Connor](https://codepen.io/marcusconnor/) on [CodePen](https://codepen.io/marcusconnor/pen/QJNvMa)
 
 # Potential CSS:
 

@@ -14,8 +14,7 @@ chrome.runtime.onInstalled.addListener(function () {
         chrome.tabs.query({'url': "*://*.youtube.com/watch?v=*"}, function (tabs) {
             var tabArray = data.tabArray;
             for (i in tabs) {
-
-                chrome.tabs.reload(tabArray[i].id)
+                chrome.tabs.reload(tabs[i].id);
                 /*
                 tabArray = queueVideo(tabArray, tabs[i].id);
 

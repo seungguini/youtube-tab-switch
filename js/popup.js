@@ -25,8 +25,14 @@ chrome.storage.sync.get({'tabArray': []}, function(data){
 chrome.storage.sync.get({'enabled':true}, function(data){
     if (data.enabled) {
         $('#toggle-app').prop('checked', true);
+
+        // match background color with switch color
+        backgroundOn();
     } else {
         $('#toggle-app').prop('checked', false);
+    
+        // match background color with switch color
+        backgroundOff();
     }
 });
 
@@ -35,6 +41,10 @@ chrome.storage.sync.get({'enabled':true}, function(data){
 $(function(){
     $('#toggle-app').change(function() {
         if ($('#toggle-app').prop('checked')) {
+
+            // match background color with switch color
+            backgroundOn();
+
             chrome.storage.sync.set({'enabled': true});
             chrome.storage.sync.get({"tabArray": []}, function(data){
                 if (data.tabArray.length > 0) {
@@ -44,7 +54,23 @@ $(function(){
             });
         }
         else {
+
+            // match background color with switch color
+            backgroundOff();
+            
             chrome.storage.sync.set({'enabled': false});
         }
     });
 });
+
+function backgroundOn() {
+    $('body').ready(function() {
+        $("body").css("background-color", "#b71c1c");
+    });
+}
+
+function backgroundOff() {
+    $('body').ready(function() {
+        $("body").css("background-color", "#bd5757");
+    });
+}

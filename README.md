@@ -41,6 +41,8 @@ Tab designed by [Ilham Ibnu Purnomo](https://codepen.io/inupurnomo) on [CodePen]
 
 Switch designed by [Marcus Connor](https://codepen.io/marcusconnor/) on [CodePen](https://codepen.io/marcusconnor/pen/QJNvMa)
 
+Social Media Button designed by [Kieran Hunter](https://codepen.io/kieranfivestars) on [CodePen](https://codepen.io/kieranfivestars/pen/gbOWbM/)
+
 ## Features to Add:
 - Managing multiple YouTube tabs
   - maintain a bird's-eye view of all open Youtube tabs

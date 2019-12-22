@@ -8,7 +8,7 @@ Color Pallette:
 /* Icons */
 
 .btn {
-  color: white;
+  color: rgba(255, 255, 255, 0.61);
   background: #b71c1c;
   border-radius:4px;
   text-align:center;
@@ -27,14 +27,14 @@ Color Pallette:
 }
 
 .btn:hover {
-  color: black;
-  background: #ef92a3;
+  color: rgb(255, 255, 255);
+  background: #b71c1c;
 }
 
 /* pop-up text */
 
 .btn span {
-  color:black;
+  color:white;
   position:absolute;
   font-family:sans-serif;
   bottom:0;
@@ -44,7 +44,7 @@ Color Pallette:
   z-index:-1;
   font-size:14px;
   border-radius:2px;
-  background:#ef92a3;
+  background:#b71c1c;
   visibility:hidden;
   opacity:0;
   -o-transition:all .5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
@@ -61,7 +61,7 @@ Color Pallette:
   height: 0; 
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
-  border-top: 5px solid #ef92a3;
+  border-top: 5px solid #b71c1c;
   position:absolute;
   bottom:-5px;
   left:40px;
@@ -162,6 +162,7 @@ body{
   margin: 0 auto;
   float: right;
 }
+
 /*
 Copyright (c) 2018 - Marcus Connor - https://codepen.io/marcusconnor/pen/QJNvMa
 

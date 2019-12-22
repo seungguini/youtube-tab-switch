@@ -63,6 +63,9 @@ $(function(){
     });
 });
 
+/*
+switch app's background color to match the on/off switch
+*/
 function backgroundOn() {
     $('body').ready(function() {
         $("body").css("background-color", "#b71c1c");

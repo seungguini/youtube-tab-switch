@@ -8,13 +8,9 @@ Imagine a _switch_. A switch is binary: it can either be set to one or the other
 
 YouTube Tab Switch maintains this analogy by **_always_** having one - and **_only_** one - video playing. Pausing a video automatically triggers another video to play, creating one constant, uninterrupted flow of video.
 
-## Motivation
+## Privacy
 
-Like many of you, my tabs were always a _convoluted_ mess of multiple websites and YouTube videos. Several videos would play at the same time, creating a cacaphony of untracked sound.
-
-I needed a way to maintain a single flow of video, so I created this extension! 
-
-For me, I utilize the extension by opening a video tutorial on one tab, a music video on another: when you need to pause the video tutorial to code or take notes, music automatically plays from the other tab!
+The app reads the urls of all tabs open on your computer to screen all YouTube related content and appends them to a list to track your videos. YouTube Tab Switch utilizes chrome storage to store your urls, creating a unique database for each user and accessible only to themselves. For inquiries, feel free to bring up an issue or email me at seungguini@gmail.com
 
 ## Need to temporarily disable YouTube Tab Switch?
 Simply turn the app off through the popup _switch_!

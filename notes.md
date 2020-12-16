@@ -1,3 +1,20 @@
+## Feature Brainfart
+
+
+### Connect Spotify
+
+Connect spotify as part of this app.
+Study Spotify's API and see how a chrome extension can handle it.
+
+### Dampen Audio
+
+Designate the main soundtrack (Youtube, Spotify). When user plays another video (i.e. Youtube tutorial),
+the main audio is dampened to the user-chosen sound level. Provides users a constant stream of music
+while allowing it to switch to BGM mode when necessary.
+
+- What if the secondary video (i.e. tutorial) already has BGM?
+
+
 ## Potential CSS:
 
 ### Tabs

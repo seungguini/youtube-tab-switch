@@ -2,6 +2,10 @@
 ## Description
 YouTube Tab Switch is _the_ chrome extension that maintains one, and _only_ one video playback, no matter how many video tabs are open. _Pausing_ a video plays the **second-most recently played video**, and vice versa.
 
+## Migration to React.js
+[React](https://reactjs.org/) to display queued media
+Connect with [Spotify API](https://developer.spotify.com/documentation/web-playback-sdk/)
+
 ## Analogy
 
 Imagine a _switch_. A switch is binary: it can either be set to one or the other. Never both; never neither. **ON** or **OFF**.

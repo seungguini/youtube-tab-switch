@@ -1,4 +1,7 @@
 # YouTube Tab Switch
+
+Try the extension on the [Chrome Store](https://chrome.google.com/webstore/detail/youtube-tab-switch/ffbfmnpnnpioeahopelpofkgdnoglkom?hl=en)
+
 ## Description
 YouTube Tab Switch is _the_ chrome extension that maintains one, and _only_ one video playback, no matter how many video tabs are open. _Pausing_ a video plays the **second-most recently played video**, and vice versa.
 
